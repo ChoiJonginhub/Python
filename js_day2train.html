@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//1
+    function hi(x){
+if(x.match("안녕")){
+alert("안녕하세요")
+}
+else if(x.match("잘자")||x.match("잘 자"))
+{alert("안녕히 주무세요")
+}
+}
+var word=prompt("문자를 입력하세요")
+document.write(hi(word))
+//2
+function hi(x){
+if(!x.match("안녕")){
+alert("인사를 안하다니...")}
+}
+var word=prompt("문자를 입력하세요")
+document.write(hi(word))
+//3
+function f(x){
+if(x%4==0){
+alert("4로 나뉘는 수입니다.")
+}
+else{
+alert("4로 나눌 수 없는 수입니다.")
+}
+}
+var n=prompt("숫자를 입력하세요 :")
+document.write(f(n))
+//4
+function f(x){
+if(x>0){
+    alert("양수입니다.")
+    }
+else if(x==0){
+    alert("0입니다.")
+    }
+
+else{
+    alert("음수입니다.")
+    }
+}
+var n=prompt("숫자를 입력하세요 :")
+document.write(f(n))
+
+//5
+function f{
+var s=prompt("문자열을 입력해주세요");
+var p=0, q=0;
+    for(var i of t){
+        if(t=='p'||t=='P'){
+            p+=1;
+        }
+        else if(t=='q'||t=='Q'){
+            q+=1;
+        }
+    }
+    if(p==q){
+    document.write("true")
+    }
+    else(){
+    document.write("false")
+    }
+    }
+document.write(f())
+//5-2
+function pq(){
+    var s=prompt("문자열을 입력해주세요: ");
+    var p=0, q=0;
+    for (var i of s){
+        if (i=="P"||i=="p"){
+        p+=1;
+        }
+        else if (i=="Q"||i=='q'){
+        q+=1;
+        }
+    }
+    if (p==q){
+        return true
+    }
+    else{
+        return false
+    }
+}
+document.write(pq());
+</script>
+</body>
+</html>

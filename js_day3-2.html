@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    function CheckAddProduct(){
+    //alert("함수 호출");
+    var productId=document.getElementById("productId");
+    var name=document.getElementById("name");
+    var unitPrice=document.getElementById("unitPrice");
+    var unitsInStock=document.getElementById("unitsInStock");
+//아이디체크
+//[도서 코드]\nISBN과 문자/숫자의 조합 5~12까지 입력. 반드시 ISBN로 시작.
+
+if(!(/^ISBN[a-zA-Z0-9]{1,8}$/.test(productId.value))){
+alert("비정상 ISBN코드");
+productId.select();
+productId.focus();
+return false;
+}
+
+/*
+if(/^ISBN[a-zA-Z0-9]{1,8}$/.test(productId.value)){
+    //alert("정상 ISBN코드");
+    return true;
+}
+else{
+alert("비정상 ISBN코드");
+productId.select();
+productId.focus();
+return false;
+}
+*/
+
+//ISBN12345:정상
+//IS12345
+//12345
+//12345ISBN
+
+//상품명 체크:최소 4자이상 12자이하로 작성 -> 테스트
+//4자 미만이거나 12자 초과인 경우에는 다시 입력하도록
+if(name.value.length < 4 || name.value.length > 12){
+alert("[도서명]\n최소 4자 이상 12자 이하로 입력하세요");
+    name.select();
+    name.focus();
+    return false;
+}
+
+//상품각격체크
+if(unitPrice.value<=0){
+alert("[가격]\n가격은 양수로 입력해주세요");
+unitPrice.select();
+unitPrice.focus();
+return false;
+}
+if(isNaN(unitPrice.value)){
+alert("[가격]\n숫자만 입력하세요");
+unitPrice.select();
+unitPrice.focus();
+return false;
+}
+
+
+
+
+//재고수(숫자)체크
+if(isNaN(unitsInStock.value)){//Not a Number
+alert("[재고 수]\n숫자만 입력하세요(NaN)");
+unitsInStock.select();
+unitsInStock.focus();
+return false;
+}
+
+
+    }
+
+</script>
+
+<div class="jumbotron">
+	<div class="contrainer">
+		<h1 class="display-3">상품 등록</h1>
+	</div>
+</div>
+
+<div>
+	<form name="newProduct" action="processAddProduct.jsp" class="form-horizontal" method="post">
+		    <div class="form-group row">
+			<label class="col-sm-2">도서코드</label>
+			<div class="col-sm-3">
+				<input type="text" id="productId" name="productId" class="form-control">
+			</div>
+		</div>
+    		<div class="form-group row">
+			<label class="col-sm-2">도서명</label>
+			<div class="col-sm-3">
+				<input type="text" id="name" name="name" class="form-control">
+			</div>
+		</div>
+            <div class="form-group row">
+                <label class="col-sm-2">가격</label>
+                <div class="col-sm-3">
+                    <input type="text" id="unitPrice" name="unitPrice" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2">저자</label>
+                <div class="col-sm-3">
+                    <input type="text" name="author" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2">출판사</label>
+                <div class="col-sm-3">
+                    <input type="text" name="publisher" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2">출판일</label>
+                <div class="col-sm-3">
+                    <input type="text" name="releaseDate" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2">총 페이지 수</label>
+                <div class="col-sm-3">
+                    <input type="text" name="totalPages" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2">상세 정보</label>
+                <div class="col-sm-5">
+                    <textarea name="description" cols="50" rows="2" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2">분류</label>
+                <div class="col-sm-3">
+                    <input type="text" name="category" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2">재고 수</label>
+                <div class="col-sm-3">
+                    <input type="text" id="unitsInStock" name="unitsInstock" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2">상태</label>
+                <div class="col-sm-5">
+                    <input type="radio" name="condition" value="New " >
+                    신규 제품
+                    <input type="radio" name="condition" value="Old ">
+                    중고 제품
+                    <input type="radio" name="condition" value="Refurbished">
+                    재생 제품
+                </div>
+            </div>
+			<div class="form-group row">
+				<label class="col-sm-2">이미지</label>
+				<div class="col-sm-5">
+					<input type="file" name="productImage" class="form-control">
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-sm-offset-2 col-sm-10">
+					<input type="button" class="btn btn-primary" value="등록" onclick="CheckAddProduct()">
+				</div>
+			</div>
+    </form>
+</div>
+
+</body>
+</html>

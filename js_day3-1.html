@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+       div{
+       font-size:15px;
+       margin:10px;
+       }
+       form{
+       width:600px;
+       margin:30px;
+       background-color:#bbb;
+      }
+
+    </style>
+
+</head>
+<body>
+<!--아이디 중복 체크, 이메일 중복 체크, 주소 검색(우편번호 팝업)-->
+<!--html-->
+<form name="join_form" action="join_ok.jsp" method="post">
+    <div>
+    <label>아이디<input type="text" name="uid" id="uid"></label>
+    <button type="button" onclick="id_check();">중복확인</button>
+    </div>
+
+     <div>
+    <label>비밀번호<input type="password" name="pwd" id="pwd" placeholder="문자+숫자+특수문자 조합"></label>
+    </div>
+    <div>
+    <label>비밀번호 재확인<input type="password" name="repwd" id="repwd"></label>
+</div>
+    <div>
+        <label>이름<input type="text" name="uname" id="uname"></label>
+    </div>
+    <div>
+        <label>
+           생년월일<input type="text" name="yy" id="yy" placeholder="년(4자)" maxlength="4">
+            <select name="mm" id="mm">
+                <option value="">월</option>
+                 <option value="01">1</option>
+                 <option value="02">2</option>
+                 <option value="03">3</option>
+                 <option value="04">4</option>
+                 <option value="05">5</option>
+                 <option value="06">6</option>
+                 <option value="07">7</option>
+                 <option value="08">8</option>
+                 <option value="09">9</option>
+                 <option value="10">10</option>
+                 <option value="11">11</option>
+                 <option value="12">12</option>
+           </select>
+        </label>
+        <input type="text" name="dd" id="dd" placeholder="일" maxlength="2">
+    </div>
+
+    <div>
+        성별<input type="radio" value="F" name="gender" id="female">여
+        <input type="radio" value="M" name="gender" id="male" checked>남
+    </div>
+
+    <div>
+        <label>전화번호
+        <input type="tel" name="mobile" id="mobile">ex "-"없이 숫자만 입력
+        </label>
+
+    </div>
+    <div>
+        <label>이메일
+        <input type="text" name="email_id" id="email_id">@</label>
+        <input type="text" name="email_add" id="email_add">
+        <select name="email_sel" id="email_sel" onchange="change_email();">
+            <option value="">직접입력</option>
+            <option value="naver.com">naver</option>
+            <option value="gmail.com">gmail</option>
+            <option value="daum.net">daum</option>
+        </select>
+    </div>
+
+    <div>
+        <label>주소<input type="text" name="postal_code" id="postal_code"></label>
+        <button type="button" onclick="search_address();">검색</button>
+    </div>
+
+    <div>
+        <label>기본주소<input type="text" name="addr1" id="addr1" size="30"></label>
+    </div>
+    <div>
+        <label>상세주소<input type="text" name="addr2" id="addr2" size="30"></label>
+    </div>
+        <div>
+        <label>약관동의<input type="checkbox" name="agree" id="agree" value="Y">약관에 동의합니다</label>
+    </div>
+    <button type="button" onclick="history.back();">이전페이지로</button>
+<!--    history.back();이전페이지 history.forward(); 다음페이지-->
+    <button type="button" onclick="joinform_check();">가입</button>
+
+</form>
+<!--css-->
+<!--javascript-->
+<script>
+function joinform_check(){
+var uid=document.getElementById("uid");
+var pwd=document.getElementById("pwd");
+var repwd=document.getElementById("repwd");
+var uname=document.getElementById("uname");
+var male=document.getElementById("male");
+var female=document.getElementById("female");
+var mobile=document.getElementById("mobile");
+var email_id=document.getElementById("email_id");
+var agree=document.getElementById("agree");
+
+if(uid.value==""){                 //alert(uid.value);
+    alert("아이디를 반드시 입력하라니깐요?");
+    uid.focus();
+    return false; //아래쪽에 위치한 코드를 수행하지 말고 (가입처리)중단해라
+}
+if(pwd.value==""){
+    alert("비밀번호를 입력하세요");
+    pwd.focus();
+    return false;
+}
+
+
+}
+
+
+
+function search_address(){
+window.open("","_blank","width=600, height=500, left=100, top=100"); //url, name, specs
+}
+
+    function change_email(){
+        //document.write("이메일 선택상자에 변화가 생겼어요");
+        var email_add=document.getElementById("email_add");
+        var email_sel=document.getElementById("email_sel");
+        //alert(email_sel.options.selectedIndex);//선택상자에서 선택된 항목의 index를 리턴
+        var idx=email_sel.options.selectedIndex; //idx에는 1~3까지 값이 저장
+        var val=email_sel.options[idx].value;
+        email_add.value=val;
+    }
+
+</script>
+
+</body>
+</html>

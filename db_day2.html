@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var s="CAT";
+    var n=5;
+    for(var i of s){
+    var asci=i.charCodeAt()+n;
+    if(asci>90){
+    asci-=26;
+    document.write(String.fromCharCode(asci));
+    }
+    else{
+    document.write(String.fromCharCode(asci));
+    }
+    }
+</script>
+</body>
+</html>
